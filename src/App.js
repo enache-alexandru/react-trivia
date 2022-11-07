@@ -1,4 +1,4 @@
-import './App.css';
+import './assets/scss/App.scss';
 import React, { Component } from "react";
 import { getAllQuestions } from './services/dummyQuestions'
 import { getQuestion } from './services/dummyQuestions'
@@ -8,7 +8,7 @@ import { getQuestion } from './services/dummyQuestions'
 function Answer(props) {
   return (
     <button
-      className={`answer answer-${props.value}`}
+      className={`answer answer-${props.value} btn`}
       onClick={() => props.onAnswer()}
       >
         {props.children}
@@ -109,13 +109,13 @@ function NextQuestion(props) {
   if(currentQuestion < props.totalQuestions) {
     return(
       <div className="next-question">
-        <button onClick={()=>props.onClick()}>Next Question</button>
+        <button onClick={()=>props.onClick()} className=" btn btn-primary">Next Question</button>
       </div>
     )
   } else {
     return(
       <div className="next-question">
-        <button onClick={()=>props.onShowResults()} disabled={props.gameOver ? true : false}>Show Results</button>
+        <button onClick={()=>props.onShowResults()} disabled={props.gameOver ? true : false} className="btn btn-primary">Show Results</button>
       </div>
     )
   }

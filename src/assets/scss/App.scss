@@ -1,8 +1,13 @@
+@import './customBootstrap.scss';
+
+//$pulm: map.get($theme-colors, 'primary');
+
 body {
   margin: 0;
   padding: 0;
-  color: #333;
+  
 }
+
 
 *, *:after, *:before {
   box-sizing: border-box;
@@ -14,6 +19,7 @@ body {
   padding-right: 15px;
   margin-left: auto;
   margin-right: auto;
+  color: $primary;
 }
 
 button {
