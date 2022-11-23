@@ -22,8 +22,6 @@ const Login = ({ history }) => {
 
   const { currentUser } = useContext(AuthContext);
 
-  console.log("currentUser:::::", currentUser)
-
   if (currentUser) {
     return <Navigate to="/" />;
   }

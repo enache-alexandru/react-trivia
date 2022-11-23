@@ -11,10 +11,10 @@ export const AuthProvider = ({ children }) => {
   const [userEmail, setUserEmail] = useState(null);
 
   useEffect(() => {
-    console.log("app", app)
+    // console.log("app:::", app)
 
     app.auth().onAuthStateChanged((user) => {
-        console.log("user::",user)
+        // console.log("user::",user)
         setCurrentUserData(user)
         setPending(false)
         if(user) setUserEmail(user._delegate.email)
