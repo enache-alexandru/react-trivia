@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
+import app from "../base";
 import { AuthContext } from "../Auth.js";
 
 const NavBar = () => {
@@ -31,8 +32,16 @@ const NavBar = () => {
         </div>
       </div>
       <div className="form-inline my-2 my-lg-0">
-          { currentUser ? <div>Welcome {currentUser._delegate.email}</div> : 
-            <div>
+          { currentUser 
+          ? <div>
+              <span> {currentUser._delegate.email} </span>
+              <button
+                className="btn btn-secondary btn-sm"
+                onClick={() => app.auth().signOut()} >
+                  Sign out
+              </button>
+            </div> 
+          : <div>
               <Link className="" to="/login">Login</Link>
               <span> or </span> 
               <Link className="" to="/signup">Sign up</Link>

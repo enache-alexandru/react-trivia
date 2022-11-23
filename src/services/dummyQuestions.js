@@ -44,22 +44,22 @@ const dummyQuestions = [
     {
         index: 3,
         correctAnswer: 4,
-        question: "Dummy question 3?",
+        question: "How much is 3 x 3?",
         answers: [
             {
-                answer: "Sample answer 21",
+                answer: "21",
                 index: 1,
             },
             {
-                answer: "Sample answer 22",
+                answer: "12",
                 index: 2,
             },
             {
-                answer: "Sample answer 23",
+                answer: "6",
                 index: 3,
             },
             {
-                answer: "Sample answer 24",
+                answer: "9",
                 index: 4,
             },
         ]
