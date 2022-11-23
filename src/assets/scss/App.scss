@@ -8,9 +8,12 @@ body {
   
 }
 
-
 *, *:after, *:before {
   box-sizing: border-box;
+}
+
+.hide {
+  display: none !important;
 }
 
 .trivia-app {

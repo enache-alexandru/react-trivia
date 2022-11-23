@@ -2,14 +2,19 @@ import './assets/scss/App.scss';
 import React, { Component } from "react";
 import { Routes, Route } from "react-router-dom";
 import NavBar from './components/navBar';
-import Home from './Home';
+import Home from './components/home';
 // import Login from './components/login';
 import Login from './Login';
 import Game from './components/game';
+import Contact from './components/contact';
 import SignUp from './SignUp';
 import { AuthProvider } from './Auth';
-// import PrivateRoute from './PrivateRoute';
+import PrivateRoute from './utils/privateRoute';
 
+// const PrivateRoute = () => {
+//   const auth = true;
+//   return auth ? <Outlet /> : <Navigate to="/login" />;
+// }
 
 class App extends Component {
   state = {
@@ -18,20 +23,22 @@ class App extends Component {
     gameOver: false,
   }
 
+
+
   render() {
     return (
       <AuthProvider>
         <div className="trivia-app">
           <NavBar />
           <main className="container">
-            
               <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/login" element={<Login />} />
-                <Route path="/game" element={<Game />} />
+                <Route path="/game" element={<PrivateRoute><Game /></PrivateRoute>} />
+                <Route path="/contact" element={<Contact />} />
+                {/* <Route path="/game" element={<Game />} /> */}
                 <Route path="/signup" element={<SignUp />} />
               </Routes>
-            
           </main>
         </div>
       </AuthProvider>
