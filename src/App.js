@@ -3,10 +3,10 @@ import React, { Component } from "react";
 import { Routes, Route } from "react-router-dom";
 import NavBar from './components/navBar';
 import Home from './components/home';
-// import Login from './components/login';
 import Login from './Login';
 import Game from './components/game';
 import Contact from './components/contact';
+import EsFeatures from './components/es610';
 import SignUp from './SignUp';
 import { AuthProvider } from './Auth';
 import PrivateRoute from './utils/privateRoute';
@@ -36,6 +36,7 @@ class App extends Component {
                 <Route path="/login" element={<Login />} />
                 <Route path="/game" element={<PrivateRoute><Game /></PrivateRoute>} />
                 <Route path="/contact" element={<Contact />} />
+                <Route path="/es610" element={<EsFeatures />} />
                 {/* <Route path="/game" element={<Game />} /> */}
                 <Route path="/signup" element={<SignUp />} />
               </Routes>
