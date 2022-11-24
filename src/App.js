@@ -7,6 +7,7 @@ import Login from './Login';
 import Game from './components/game';
 import Contact from './components/contact';
 import EsFeatures from './components/es610';
+import Trivia from './components/trivia';
 import SignUp from './SignUp';
 import { AuthProvider } from './Auth';
 import PrivateRoute from './utils/privateRoute';
@@ -39,6 +40,7 @@ class App extends Component {
                 <Route path="/es610" element={<EsFeatures />} />
                 {/* <Route path="/game" element={<Game />} /> */}
                 <Route path="/signup" element={<SignUp />} />
+                <Route path="/trivia" element={<Trivia />} />
               </Routes>
           </main>
         </div>
