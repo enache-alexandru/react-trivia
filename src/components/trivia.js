@@ -17,7 +17,7 @@ const FetchData = async () => {
         .catch(err => console.error(err));
 }
 
-
+const aaaaa = []
 class Trivia extends Component {
 
     state = {
@@ -25,14 +25,23 @@ class Trivia extends Component {
         questionIndex: 0
     }
 
-    componentDidMount() {
-        let triviaQuestions = FetchData();
+    
 
-        console.log("triviaQuestions", triviaQuestions)
+    async componentDidMount() {
+        await fetch(triviaApi)
+        .then(response => response.json())
+        .then(response => {
+            console.log("response==>",response, typeof(response));
+            response.map(item =>{
+                aaaaa.push(item.question)
+            });
 
-        // this.setState({
-        //     questions: triviaQuestions
-        // })
+            console.log("aaaaa",aaaaa)
+            this.setState({
+                questions: aaaaa
+            });
+        })
+        .catch(err => console.error(err));
 
     }
 
@@ -41,7 +50,15 @@ class Trivia extends Component {
             <div>
                 <h1>Trivia</h1>
                 <div>
-                    <h3>{this.state.questions}</h3>
+                    <h3>{this.state.questions[this.state.questionIndex]}</h3>
+                    <ul className="list-group">
+                        {/* {this.state.questions.map(item => (
+                            <li
+                            >
+                                {item[textProperty]}
+                            </li>
+                        ))} */}
+                    </ul>
                 </div>
             </div>
         )
