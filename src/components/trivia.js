@@ -11,7 +11,7 @@ const FetchData = async () => {
     await fetch(triviaApi)
         .then(response => response.json())
         .then(response => {
-            console.log("aaa==>",response);
+            console.log("trivia api response ==>",response);
             return response
         })
         .catch(err => console.error(err));
