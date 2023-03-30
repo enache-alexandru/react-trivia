@@ -8,6 +8,7 @@ import Game from './components/game';
 import Contact from './components/contact';
 import EsFeatures from './components/es610';
 import Trivia from './components/trivia';
+import RealDbTest from './components/realdatabase';
 import SignUp from './SignUp';
 import { AuthProvider } from './Auth';
 import PrivateRoute from './utils/privateRoute';
@@ -41,6 +42,7 @@ class App extends Component {
                 {/* <Route path="/game" element={<Game />} /> */}
                 <Route path="/signup" element={<SignUp />} />
                 <Route path="/trivia" element={<Trivia />} />
+                <Route path="/realdatabase" element={<RealDbTest />} />
               </Routes>
           </main>
         </div>

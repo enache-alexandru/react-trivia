@@ -30,6 +30,7 @@ const NavBar = () => {
           <NavLink className={currentUser ? "nav-item nav-link" : "hide"} to="/game">Game</NavLink>
           <NavLink className="nav-item nav-link" to="/contact">Contact</NavLink>
           <NavLink className="nav-item nav-link" to="/es610">ES features</NavLink>
+          <NavLink className="nav-item nav-link" to="/realdatabase">Real database test</NavLink>
         </div>
       </div>
       <div className="form-inline my-2 my-lg-0">
