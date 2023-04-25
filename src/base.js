@@ -27,7 +27,8 @@ const firebaseConfig = {
   projectId: "react-trivia-60048",
   storageBucket: "react-trivia-60048.appspot.com",
   messagingSenderId: "34322887233",
-  appId: "1:34322887233:web:a31e1a5164a1bef9798cc0"
+  appId: "1:34322887233:web:a31e1a5164a1bef9798cc0",
+  databaseURL: "https://react-trivia-60048-default-rtdb.europe-west1.firebasedatabase.app/",
 };
 
 // Initialize Firebase

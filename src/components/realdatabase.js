@@ -19,6 +19,7 @@ class RealDbTest extends Component{
     }
 
     componentDidMount = async () => {
+        console.log("did mount")
         this.setState({
             database: firebase.database()
         })
@@ -27,42 +28,52 @@ class RealDbTest extends Component{
     connect = async () => {
         
         try {
-            const {database,myId,messageList} = this.state;
+            console.log("==> try")
+            const {database,myId,messageList,isConnected} = this.state;
 
-            console.log(database)
+            console.log("database:", database)
 
-            await database.ref('/notifs/'+myId).remove();
-            await database.ref('/notifs/'+myId).on('value',snapshot=>{
+            //await database.ref('/notifs/'+myId).remove();
+            await database.ref('notifs/'+myId).on('value', (snapshot) => {
+                console.log("on snapshiot", snapshot.val())
                 if(snapshot.exists()) {
                     const notif = snapshot.val();
+                    console.log("snapshot exists:", notif);
                     this.setState({
                         messageList: [...this.state.messageList, notif]
                     })
                 }
+                console.log("this.state.messageList", this.state.messageList)
             });
+
+
+
+
+            // await firebase.database().ref('users/' + myId).set({
+            //     username: "testUsername",
+            //     email: "testEmail"
+            // });
 
             this.setState({
                 isConnected: true
             });
-            console.log("connect", this.state.isConnected);
-
         } catch(e) {
-            console.log("++++");
             console.error(e)
         }
     }
 
     sendMessage = async () => {
+        console.log("send message")
         try {
-
+            console.log("send message - try")
             const { database, receiverId, message, myId }  = this.state
 
             await database.ref('/notifs/'+receiverId).set({
-                message: "",
+                message: message,
                 from: myId
             });
             this.setState({
-                message:""
+                message: message
             })
 
         } catch (e) {
@@ -72,6 +83,7 @@ class RealDbTest extends Component{
 
 
     renderMessages = (value, key) => {
+        console.log(value, key)
         return (
             <div key={key}>
                 Message from {value.from}: {value.message}
@@ -84,15 +96,16 @@ class RealDbTest extends Component{
         const {myId, receiverId, message, messageList} = this.state
         return (
             <div>
-                <h1>Real Db Test</h1>
+                <h1>Realtime Db Test</h1>
+                <p>{this.state.myId}</p>
                 
                 {this.state.isConnected ?
                     <div>
                         <input placeholder="Send to" value={receiverId} onChange={(e)=>this.setState({receiverId:e.target.value})}></input>
                         <input placeholder="Message" value={message} onChange={(e)=>this.setState({message:e.target.value})}></input>
-                        <button onClick={() => this.sendMessage}>Test</button>
+                        <button onClick={this.sendMessage}>Send</button>
                         <div>
-                            Received messages: {this.state.map(this.renderMessages)}
+                            Received messages: {this.state.messageList.map(this.renderMessages)}
                         </div>
                     </div>
                     :
