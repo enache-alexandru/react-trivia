@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import app from "../base";
+import app from "../firebaseInit";
 import { AuthContext } from "../Auth.js";
 
 const Home = () => {

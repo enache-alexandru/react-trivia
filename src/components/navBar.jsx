@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
-import app from "../base";
+import app from "../firebaseInit";
 import { AuthContext } from "../Auth.js";
 
 const NavBar = () => {

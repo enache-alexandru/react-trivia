@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-// import app from "../base";
+// import app from "../firebaseInit";
 // import { AuthContext } from "../Auth.js";
 import firebase from "firebase/compat/app";
 import 'firebase/compat/database';

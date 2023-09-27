@@ -16,7 +16,7 @@ export const AuthProvider = ({ children }) => {
         // console.log("user::",user)
         setCurrentUserData(user)
         setPending(false)
-        if(user) setUserEmail(user._delegate.email)
+        if(user) setUserEmail(user.email)
     });
   }, []);
 
