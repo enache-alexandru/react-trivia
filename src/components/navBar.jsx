@@ -6,7 +6,7 @@ import { AuthContext } from "../Auth.js";
 const NavBar = () => {
 
   const { currentUser } = useContext(AuthContext);
-
+  console.log("::::::",currentUser)
 
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
@@ -36,7 +36,7 @@ const NavBar = () => {
       <div className="form-inline my-2 my-lg-0">
           { currentUser 
           ? <div>
-              <span> {currentUser._delegate.email} </span>
+              <span> { currentUser.email} </span>
               <button
                 className="btn btn-secondary btn-sm"
                 onClick={() => app.auth().signOut()} >
