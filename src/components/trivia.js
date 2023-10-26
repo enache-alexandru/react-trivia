@@ -1,4 +1,5 @@
-import React, { Component } from "react";
+import React, { useState, useEffect } from "react";
+import QuestionItem from "./questionItem";
 
 const triviaApi = "https://the-trivia-api.com/api/questions?categories=general_knowledge&limit=5";
 
@@ -7,63 +8,34 @@ const triviaApi = "https://the-trivia-api.com/api/questions?categories=general_k
 
 
 
-const FetchData = async () => {
-    await fetch(triviaApi)
-        .then(response => response.json())
-        .then(response => {
-            console.log("trivia api response ==>",response);
-            return response
-        })
+// const FetchQuestions = async () => {
+//     await fetch(triviaApi)
+//         .then(response => response.json())
+//         .then(response => {
+//             console.log("trivia api response ==>",response);
+//             return response
+//         })
+//         .catch(err => console.error(err));
+// }
+
+
+function Trivia() {
+    let [FetchQuestions, setFechedQuestions] = useState([]);
+
+    useEffect(() => {
+        fetch(triviaApi)
+            .then(response => response.json())
+            .then(response => setFechedQuestions(response))
         .catch(err => console.error(err));
-}
-
-const aaaaa = []
-class Trivia extends Component {
-
-    state = {
-        questions: [],
-        questionIndex: 0
-    }
-
-    
-
-    async componentDidMount() {
-        await fetch(triviaApi)
-        .then(response => response.json())
-        .then(response => {
-            console.log("response==>",response, typeof(response));
-            response.map(item =>{
-                aaaaa.push(item.question)
-            });
-
-            console.log("aaaaa",aaaaa)
-            this.setState({
-                questions: aaaaa
-            });
-        })
-        .catch(err => console.error(err));
-
-    }
-
-    render() {
-        return (
-            <div>
-                <h1>Trivia</h1>
-                <div>
-                    <h3>{this.state.questions[this.state.questionIndex]}</h3>
-                    <ul className="list-group">
-                        {/* {this.state.questions.map(item => (
-                            <li
-                            >
-                                {item[textProperty]}
-                            </li>
-                        ))} */}
-                    </ul>
-                </div>
-            </div>
-        )
-    }
-}
+        
+    }, []);
+  
+    return (
+      <div>
+        <QuestionItem allQuestions={FetchQuestions}></QuestionItem>
+      </div>
+    );
+  }
 
 export default Trivia
 
