@@ -16,34 +16,60 @@ const reorderAnswers = question => {
 
 
 function QuestionItem ({ allQuestions }) {
-  const [isLoaded, setApiLoaded] = useState(false);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [currentQuestion, setCurrentQuestion] = useState(allQuestions[0]);
   const [answers, setAnswers] = useState([]);
+  const [countCorrectAnswers, setCountCorrectAnswers] = useState(0);
+  const [isDone, setIsDone] = useState(false);
+  const [selectedAnswer, setSelectedAnswer] = useState(null);
 
   useEffect(() => {
-    if(!allQuestions.length <= 0) {
       const question = allQuestions[currentQuestionIndex];
       setCurrentQuestion(question);
       setAnswers(reorderAnswers(question));
-      setApiLoaded(true)
-    }
+  }, [currentQuestionIndex]);
 
-}, [allQuestions]);
+  const selectAnswer =  answer => {
+    
+    setSelectedAnswer(answer)
+
+    if(answer == currentQuestion.correctAnswer) {
+      setCountCorrectAnswers(countCorrectAnswers + 1);
+    }
+    
+    setTimeout(() => {
+      let newQuestionIndex = currentQuestionIndex + 1;
+      console.log(newQuestionIndex)
+
+      if (newQuestionIndex === allQuestions.length) {
+          setIsDone(true);
+      } else {
+          setCurrentQuestionIndex(newQuestionIndex);
+          // setIsSubmitting(false);
+          setSelectedAnswer(null);
+      }
+  }, 750);
+    
+  }
 
   return (
     <div>
-       {isLoaded ? 
-        <div>
-          <h3>{currentQuestion.question}</h3>
-          <ul>
-            {console.log("answers", answers)}
-            {answers.map(item => {
-              <li>{item}</li>
-            })}
-          </ul>
-        </div>
-        : <div>loading...</div>}
+      {!isDone ? 
+      <div className="question-box">
+        <h3>{currentQuestion.question}</h3>
+        <ul className="answers-list">
+          {answers.map((a, i) => <li
+            key={i}
+            onClick={() => selectAnswer(a)}
+            className={selectAnswer == a ? "flash" : ""}
+          >
+              {a}
+            </li>)}
+        </ul>
+        <div>Question {currentQuestionIndex + 1} from {allQuestions.length}. Correct {countCorrectAnswers}</div>
+      </div>
+      : 
+      <div>is Done, {countCorrectAnswers} from {allQuestions.length} correct </div>}
     </div>
   );
 }

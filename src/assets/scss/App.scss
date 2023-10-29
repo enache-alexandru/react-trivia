@@ -28,3 +28,26 @@ body {
 button + button{
   margin-left: 10px;
 }
+
+.question-box {
+  max-width: 600px;
+  text-align: center;
+  margin: 0 auto;
+}
+
+.answers-list {
+  padding: 0;
+  list-style: none;
+}
+.answers-list li {
+  padding: 10px;
+  border-radius: 5px;
+  background-color: rgb(219, 140, 21);
+  color: whitesmoke;
+  margin: 0 0 10px 0;
+  cursor: pointer;
+  font-weight: bold;
+}
+.answers-list li:hover {
+  background-color: rgb(207, 125, 3);
+}

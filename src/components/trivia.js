@@ -21,18 +21,27 @@ const triviaApi = "https://the-trivia-api.com/api/questions?categories=general_k
 
 function Trivia() {
     let [FetchQuestions, setFechedQuestions] = useState([]);
+    let [apiLoaded, setApiLoaded] = useState(false)
 
     useEffect(() => {
         fetch(triviaApi)
             .then(response => response.json())
-            .then(response => setFechedQuestions(response))
+            .then(response => {
+                setFechedQuestions(response);
+                setApiLoaded(true);
+            })
         .catch(err => console.error(err));
         
     }, []);
   
     return (
       <div>
-        <QuestionItem allQuestions={FetchQuestions}></QuestionItem>
+        {apiLoaded ? 
+            <QuestionItem allQuestions={FetchQuestions}></QuestionItem>
+            :
+            <p>LOADING!!!</p>
+        }
+        
       </div>
     );
   }
