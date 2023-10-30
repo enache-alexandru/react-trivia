@@ -51,3 +51,13 @@ button + button{
 .answers-list li:hover {
   background-color: rgb(207, 125, 3);
 }
+
+.answers-list .correct {
+  background-color: rgb(35, 252, 7);
+}
+.answers-list .selected.incorrect {
+  background-color: red;
+}
+.answers-list .selected.correct {
+  background-color: green;
+}

@@ -33,13 +33,12 @@ function QuestionItem ({ allQuestions }) {
     
     setSelectedAnswer(answer)
 
-    if(answer == currentQuestion.correctAnswer) {
+    if(answer === currentQuestion.correctAnswer) {
       setCountCorrectAnswers(countCorrectAnswers + 1);
     }
     
     setTimeout(() => {
       let newQuestionIndex = currentQuestionIndex + 1;
-      console.log(newQuestionIndex)
 
       if (newQuestionIndex === allQuestions.length) {
           setIsDone(true);
@@ -48,7 +47,7 @@ function QuestionItem ({ allQuestions }) {
           // setIsSubmitting(false);
           setSelectedAnswer(null);
       }
-  }, 750);
+  }, 2750);
     
   }
 
@@ -58,13 +57,18 @@ function QuestionItem ({ allQuestions }) {
       <div className="question-box">
         <h3>{currentQuestion.question}</h3>
         <ul className="answers-list">
-          {answers.map((a, i) => <li
-            key={i}
-            onClick={() => selectAnswer(a)}
-            className={selectAnswer == a ? "flash" : ""}
-          >
-              {a}
+          {answers.map((a, i) => {
+            let isSubmitting = selectedAnswer != null;
+            let isCorrectClassName = a === currentQuestion.correctAnswer && isSubmitting ? "correct" : "incorrect";
+            let isSelectedClassName = a === selectedAnswer ? "selected" : "not-selected";
+            return(<li
+              key={i}
+              onClick={() => selectAnswer(a)}
+              className={isSubmitting ? isCorrectClassName + " " + isSelectedClassName : ""}
+            >
+                {a}
             </li>)}
+          )}
         </ul>
         <div>Question {currentQuestionIndex + 1} from {allQuestions.length}. Correct {countCorrectAnswers}</div>
       </div>
